@@ -38,6 +38,9 @@ export interface ImagePrompt {
     subject: string;
     scene: string;
     style: string;
+    composition?: string;
+    lighting?: string;
+    grading?: string;
     keep?: string;
     change?: string;
     negative?: string;
@@ -48,6 +51,9 @@ export interface VideoPrompt {
     action: string;
     effect: string;
     rhythm: string;
+    camera?: string;
+    expression?: string;
+    body?: string;
     negative?: string;
 }
 /** One storyboard segment. */

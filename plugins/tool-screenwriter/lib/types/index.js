@@ -114,6 +114,12 @@ export function renderStoryboardMarkdown(doc) {
         lines.push(`- 主体：${seg.image_prompt.subject}`);
         lines.push(`- 场景：${seg.image_prompt.scene}`);
         lines.push(`- 风格：${seg.image_prompt.style}`);
+        if (seg.image_prompt.composition !== undefined)
+            lines.push(`- 构图：${seg.image_prompt.composition}`);
+        if (seg.image_prompt.lighting !== undefined)
+            lines.push(`- 光线：${seg.image_prompt.lighting}`);
+        if (seg.image_prompt.grading !== undefined)
+            lines.push(`- 色调：${seg.image_prompt.grading}`);
         if (seg.image_prompt.keep !== undefined)
             lines.push(`- 保持：${seg.image_prompt.keep}`);
         if (seg.image_prompt.change !== undefined)
@@ -126,6 +132,12 @@ export function renderStoryboardMarkdown(doc) {
         lines.push(`- 动作：${seg.video_prompt.action}`);
         lines.push(`- 效果：${seg.video_prompt.effect}`);
         lines.push(`- 节奏：${seg.video_prompt.rhythm}`);
+        if (seg.video_prompt.camera !== undefined)
+            lines.push(`- 运镜：${seg.video_prompt.camera}`);
+        if (seg.video_prompt.expression !== undefined)
+            lines.push(`- 表情：${seg.video_prompt.expression}`);
+        if (seg.video_prompt.body !== undefined)
+            lines.push(`- 肢体：${seg.video_prompt.body}`);
         if (seg.video_prompt.negative !== undefined)
             lines.push(`- 负面提示词：${seg.video_prompt.negative}`);
         if (seg.transition !== undefined)
@@ -180,6 +192,9 @@ export function apply(ctx, config) {
                                 subject: { type: 'string', required: true },
                                 scene: { type: 'string', required: true },
                                 style: { type: 'string', required: true },
+                                composition: { type: 'string', description: '构图与画幅（六维①）' },
+                                lighting: { type: 'string', description: '光线布光（六维③）' },
+                                grading: { type: 'string', description: '色彩色调调色（六维④）' },
                                 keep: { type: 'string' },
                                 change: { type: 'string' },
                                 negative: { type: 'string' },
@@ -194,6 +209,9 @@ export function apply(ctx, config) {
                                 action: { type: 'string', required: true },
                                 effect: { type: 'string', required: true },
                                 rhythm: { type: 'string', required: true },
+                                camera: { type: 'string', description: '运镜系统（六维②）' },
+                                expression: { type: 'string', description: '面部微表情（六维⑤）' },
+                                body: { type: 'string', description: '肢体表演（六维⑥）' },
                                 negative: { type: 'string' },
                             },
                         },
