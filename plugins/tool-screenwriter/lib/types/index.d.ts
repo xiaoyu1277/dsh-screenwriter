@@ -85,6 +85,5 @@ export declare function renderStoryboardMarkdown(doc: StoryboardDoc): string;
  * @param ctx - the registration scope; execution uses its `fs` service.
  * @param config - validated plugin config.
  */
-export declare function apply(ctx: Context, config: Config): void;
-export default apply;
+export declare function apply(ctx: Context, config: Config | undefined): void;
 //# sourceMappingURL=index.d.ts.map

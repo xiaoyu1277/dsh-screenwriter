@@ -213,8 +213,8 @@ function formatExportSummary(value: ExportSummaryValue): string {
  * @param ctx - the registration scope; execution uses its `fs` service.
  * @param config - validated plugin config.
  */
-export function apply(ctx: Context, config: Config): void {
-  const maxSegments = config.maxSegments ?? 40
+export function apply(ctx: Context, config: Config | undefined): void {
+  const maxSegments = config?.maxSegments ?? 40
 
   ctx.tools.register(defineTool({
     name: 'storyboard_export',
@@ -437,4 +437,3 @@ export function apply(ctx: Context, config: Config): void {
   }))
 }
 
-export default apply

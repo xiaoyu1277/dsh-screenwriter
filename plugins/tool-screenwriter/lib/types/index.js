@@ -151,7 +151,7 @@ function formatExportSummary(value) {
  * @param config - validated plugin config.
  */
 export function apply(ctx, config) {
-    const maxSegments = config.maxSegments ?? 40;
+    const maxSegments = config?.maxSegments ?? 40;
     ctx.tools.register(defineTool({
         name: 'storyboard_export',
         description: '将 dsh-screenwriter 技能生成的分段分镜表（每段的画面四要素图片提示词 + 场景四要素视频提示词）校验后写入工作区：storyboard-<标题>.json（结构化数据）与 storyboard-<标题>.md（可读分镜表），供逐段图生视频使用。',
@@ -373,5 +373,4 @@ export function apply(ctx, config) {
         },
     }));
 }
-export default apply;
 //# sourceMappingURL=index.js.map
