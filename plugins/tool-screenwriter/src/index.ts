@@ -72,6 +72,7 @@ export interface VideoPrompt {
 export interface StoryboardSegment {
   segment: string
   beat: string
+  intent?: string
   duration_sec?: number
   img2img_from?: string
   image_prompt: ImagePrompt
@@ -168,6 +169,7 @@ export function renderStoryboardMarkdown(doc: StoryboardDoc): string {
             : '↻ 修改中'
     const duration = seg.duration_sec !== undefined ? `（约 ${String(seg.duration_sec)} 秒）` : ''
     lines.push(`### 段 ${seg.segment} · ${seg.beat}${duration}`)
+    if (seg.intent !== undefined) lines.push(`- 镜头意图：${seg.intent}`)
     const note = progress?.note !== undefined ? `（${progress.note}）` : ''
     lines.push(`- 状态：${statusText}${note}`)
     if (seg.img2img_from !== undefined) lines.push(`- 图生图来源：${seg.img2img_from}`)
@@ -245,6 +247,7 @@ export function apply(ctx: Context, config: Config | undefined): void {
           properties: {
             segment: { type: 'string', required: true, description: '分段编号，如 A、B、C。' },
             beat: { type: 'string', required: true, description: '本段剧情节拍。' },
+            intent: { type: 'string', description: '一镜一意：本镜头要表达的核心意图（情绪/信息/主题揭示）。' },
             duration_sec: { type: 'integer', description: '本段视频时长（秒）。' },
             img2img_from: { type: 'string', description: '图生图来源（如 S 锚点图、A）。' },
             image_prompt: {

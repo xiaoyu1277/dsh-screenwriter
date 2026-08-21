@@ -60,6 +60,7 @@ export interface VideoPrompt {
 export interface StoryboardSegment {
     segment: string;
     beat: string;
+    intent?: string;
     duration_sec?: number;
     img2img_from?: string;
     image_prompt: ImagePrompt;

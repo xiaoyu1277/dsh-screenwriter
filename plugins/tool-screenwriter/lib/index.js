@@ -84,6 +84,7 @@ function renderStoryboardMarkdown(doc) {
 		const statusText = progress === void 0 ? "☐ 待出图" : progress.status === "image_pending" ? "☐ 待出图" : progress.status === "image_confirmed" ? "☑ 图已确认" : progress.status === "video_generated" ? "☑ 视频已生成" : "↻ 修改中";
 		const duration = seg.duration_sec !== void 0 ? `（约 ${String(seg.duration_sec)} 秒）` : "";
 		lines.push(`### 段 ${seg.segment} · ${seg.beat}${duration}`);
+		if (seg.intent !== void 0) lines.push(`- 镜头意图：${seg.intent}`);
 		const note = progress?.note !== void 0 ? `（${progress.note}）` : "";
 		lines.push(`- 状态：${statusText}${note}`);
 		if (seg.img2img_from !== void 0) lines.push(`- 图生图来源：${seg.img2img_from}`);
@@ -165,6 +166,10 @@ function apply(ctx, config) {
 							type: "string",
 							required: true,
 							description: "本段剧情节拍。"
+						},
+						intent: {
+							type: "string",
+							description: "一镜一意：本镜头要表达的核心意图（情绪/信息/主题揭示）。"
 						},
 						duration_sec: {
 							type: "integer",
